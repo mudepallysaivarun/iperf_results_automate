@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPERF Test Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        .table-container {
+            display: flex;              /* enables side-by-side layout */
+            justify-content: center;    /* centers tables horizontally */
+            gap: 40px;                  /* space between tables */
+            margin-top: 15px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 300px;               /* fixed width for each table */
+        }
+        table, th, td {
+            border: 1px solid #7f8c8d;
+        }
+        th, td {
+            padding: 8px 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #ecf0f1;
+        }
+        /* Adjust column widths */
+        table th:first-child, table td:first-child {
+            width: 50%; /* Parameter column */
+        }
+        table th:last-child, table td:last-child {
+            width: 50%; /* Value column */
+        }
+    </style>
+</head>
+<body>
+    <h1>IPERF Test Results [RSTP]</h1>
+
+    <h2>TCP Results</h2>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th colspan="2">Multi Port Results</th>
+            </tr>
+            <tr>
+                <th>Packet Size</th>
+                <th>Throughput</th>
+            </tr>
+            <tr><td>64 Bytes</td><td>thrput_tcp_m18</td></tr>
+            <tr><td>128 Bytes</td><td>thrput_tcp_m82</td></tr>
+            <tr><td>256 Bytes</td><td>thrput_tcp_m210</td></tr>
+            <tr><td>512 Bytes</td><td>thrput_tcp_m466</td></tr>
+            <tr><td>1024 Bytes</td><td>thrput_tcp_m978</td></tr>
+            <tr><td>1472 Bytes</td><td>thrput_tcp_m1426</td></tr>
+            <tr><td>1518 Bytes</td><td>thrput_tcp_m1472</td></tr>
+            <tr><td>1528 Bytes</td><td>thrput_tcp_m1482</td></tr>
+        </table>
+
+    <table>
+        <tr>
+            <th colspan="2">Single Port Results</th>
+        </tr>
+        <tr>
+            <th>Packet Size</th>
+            <th>Throughput</th>
+        </tr>
+        <tr><td>64 Bytes</td><td>thrput_tcp_s0_18</td></tr>
+        <tr><td>128 Bytes</td><td>thrput_tcp_s0_82</td></tr>
+        <tr><td>256 Bytes</td><td>thrput_tcp_s0_210</td></tr>
+        <tr><td>512 Bytes</td><td>thrput_tcp_s0_466</td></tr>
+        <tr><td>1024 Bytes</td><td>thrput_tcp_s0_978</td></tr>
+        <tr><td>1472 Bytes</td><td>thrput_tcp_s0_1426</td></tr>
+        <tr><td>1518 Bytes</td><td>thrput_tcp_s0_1472</td></tr>
+        <tr><td>1528 Bytes</td><td>thrput_tcp_s0_1482</td></tr>
+    </table>
+
+    </div>
+
+    <h2>UDP Results</h2>
+    <div class="table-container">
+    <table>
+        <tr>
+            <th colspan="2">Multi Port Results</th>
+        </tr>
+        <tr>
+            <th>Packet Size</th>
+            <th>Throughput</th>
+        </tr>
+        <tr><td>64 Bytes</td><td>thrput_udp_m18</td></tr>
+        <tr><td>128 Bytes</td><td>thrput_udp_m82</td></tr>
+        <tr><td>256 Bytes</td><td>thrput_udp_m210</td></tr>
+        <tr><td>512 Bytes</td><td>thrput_udp_m466</td></tr>
+        <tr><td>1024 Bytes</td><td>thrput_udp_m978</td></tr>
+        <tr><td>1472 Bytes</td><td>thrput_udp_m1426</td></tr>
+        <tr><td>1518 Bytes</td><td>thrput_udp_m1472</td></tr>
+        <tr><td>1528 Bytes</td><td>thrput_udp_m1482</td></tr>
+    </table>
+
+    <table>
+        <tr>
+            <th colspan="2">Single Port Results</th>
+        </tr>
+        <tr>
+            <th>Packet Size</th>
+            <th>Throughput</th>
+        </tr>
+        <tr><td>64 Bytes</td><td>thrput_tcp_s0_18</td></tr>
+        <tr><td>128 Bytes</td><td>thrput_tcp_s0_82</td></tr>
+        <tr><td>256 Bytes</td><td>thrput_tcp_s0_210</td></tr>
+        <tr><td>512 Bytes</td><td>thrput_tcp_s0_466</td></tr>
+        <tr><td>1024 Bytes</td><td>thrput_tcp_s0_978</td></tr>
+        <tr><td>1472 Bytes</td><td>thrput_tcp_s0_1426</td></tr>
+        <tr><td>1518 Bytes</td><td>thrput_tcp_s0_1472</td></tr>
+        <tr><td>1528 Bytes</td><td>thrput_tcp_s0_1482</td></tr>
+    </table>
+    </div>
+</body>
+</html>

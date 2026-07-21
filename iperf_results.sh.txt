@@ -1,0 +1,23 @@
+# Declare and initialize
+arr=(18 82 210 466 978 1426 1472 1782)
+
+tcp_cmd=$(iperf3 -c $ip_addr -l $pkt_ken > client_tcp.txt)
+udp_cmd=$(iperf3 -u -c $ip_addr -b 0 -l $pkt_ken > client_udp.txt)
+
+for item in "${arr[@]}"; do
+        if [ $tcp_flag -eq 1 ]; then
+                iperf3 -c $ip_addr -l $item > client_tcp.txt
+                thr=$(tail -n 9 client_tcp.txt | grep "" | cut -d ' ' -f 13)
+                speed=$(tail -n 9 client_tcp.txt | grep "" | cut -d ' ' -f 14)
+                res=$(echo $thr $speed)
+                sed -i "s/thrput_tcp_m$item/$res/g" iperf_results.html
+                rm -rf client_tcp.txt
+        else
+                iperf3 -u -c $ip_addr -b 0 -l $pkt_ken > client_udp.txt
+                thr=$(tail -n 9 client_udp.txt | grep "" | cut -d ' ' -f 13)
+                speed=$(tail -n 9 client_udp.txt | grep "" | cut -d ' ' -f 14)
+                res=$(echo $thr $speed)
+                sed -i "s/thrput_udp_m$item/$res/g" iperf_results.html
+                rm -rf client_udp.txt
+        fi
+done
