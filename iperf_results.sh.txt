@@ -1,23 +1,18 @@
 # Declare and initialize
-arr=(18 82 210 466 978 1426 1472 1782)
-
-tcp_cmd=$(iperf3 -c $ip_addr -l $pkt_ken > client_tcp.txt)
-udp_cmd=$(iperf3 -u -c $ip_addr -b 0 -l $pkt_ken > client_udp.txt)
+arr=(18 82 210 466 978 1426 1472 1482)
+tcp_flag=$1
+ip_addr=$2
 
 for item in "${arr[@]}"; do
-        if [ $tcp_flag -eq 1 ]; then
-                iperf3 -c $ip_addr -l $item > client_tcp.txt
-                thr=$(tail -n 9 client_tcp.txt | grep "" | cut -d ' ' -f 13)
-                speed=$(tail -n 9 client_tcp.txt | grep "" | cut -d ' ' -f 14)
-                res=$(echo $thr $speed)
-                sed -i "s/thrput_tcp_m$item/$res/g" iperf_results.html
-                rm -rf client_tcp.txt
-        else
-                iperf3 -u -c $ip_addr -b 0 -l $pkt_ken > client_udp.txt
-                thr=$(tail -n 9 client_udp.txt | grep "" | cut -d ' ' -f 13)
-                speed=$(tail -n 9 client_udp.txt | grep "" | cut -d ' ' -f 14)
-                res=$(echo $thr $speed)
-                sed -i "s/thrput_udp_m$item/$res/g" iperf_results.html
-                rm -rf client_udp.txt
-        fi
+	if [ $tcp_flag -eq 1 ]; then
+		iperf3 -c $ip_addr -l $item > client_tcp.txt
+		thr=$(grep -B 5 "iperf Done." client_tcp.txt | grep "receiver" | sed -E 's/.* ([0-9.]+ [KM]bits\/sec).*/\1/')
+		sed -i "s|thrput_tcp_m$item|$thr|g" iperf_results.html
+		rm -rf client_tcp.txt
+	else
+		iperf3 -u -c $ip_addr -b 0 -l $item > client_udp.txt
+		thr=$(grep -B 5 "iperf Done." client_udp.txt | grep "receiver" | sed -E 's/.* ([0-9.]+ [KM]bits\/sec).*/\1/')
+		sed -i "s|thrput_udp_m$item|$thr|g" iperf_results.html
+		rm -rf client_udp.txt
+	fi
 done
